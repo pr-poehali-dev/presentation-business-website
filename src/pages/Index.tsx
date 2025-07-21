@@ -1,128 +1,140 @@
-import React from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
 
-const Index = () => {
+function Index() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-purple-50">
-      {/* Navigation */}
-      <nav className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="font-bold text-xl bg-gradient-to-r from-orange-500 to-purple-600 bg-clip-text text-transparent">
-              PRESENTATION STUDIO
-            </div>
-            <div className="hidden md:flex space-x-8">
-              <a href="#services" className="text-gray-700 hover:text-orange-500 transition-colors">Услуги</a>
-              <a href="#portfolio" className="text-gray-700 hover:text-orange-500 transition-colors">Портфолио</a>
-              <a href="#cases" className="text-gray-700 hover:text-orange-500 transition-colors">Кейсы</a>
-              <a href="#reviews" className="text-gray-700 hover:text-orange-500 transition-colors">Отзывы</a>
-              <a href="#contacts" className="text-gray-700 hover:text-orange-500 transition-colors">Контакты</a>
-            </div>
-            <Button className="bg-gradient-to-r from-orange-500 to-purple-600 hover:from-orange-600 hover:to-purple-700">
-              Заказать презентацию
-            </Button>
+    <div className="min-h-screen bg-gradient-to-br from-brand-navy via-brand-blue to-brand-cyan">
+      {/* Header */}
+      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <img 
+              src="https://cdn.poehali.dev/files/e1d700a0-2e89-46c5-8bb7-76b8a21feb7e.png" 
+              alt="AS design" 
+              className="h-10"
+            />
           </div>
+          <nav className="hidden md:flex space-x-8">
+            <a href="#services" className="text-brand-navy hover:text-brand-blue transition-colors">Услуги</a>
+            <a href="#portfolio" className="text-brand-navy hover:text-brand-blue transition-colors">Портфолио</a>
+            <a href="#cases" className="text-brand-navy hover:text-brand-blue transition-colors">Кейсы</a>
+            <a href="#reviews" className="text-brand-navy hover:text-brand-blue transition-colors">Отзывы</a>
+            <a href="#contact" className="text-brand-navy hover:text-brand-blue transition-colors">Контакты</a>
+          </nav>
+          <Button className="bg-brand-blue hover:bg-brand-navy text-white">
+            Заказать презентацию
+          </Button>
         </div>
-      </nav>
+      </header>
 
       {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-orange-500 to-purple-600 bg-clip-text text-transparent">
-            Презентации, которые продают
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Создаем презентации для бизнеса, которые впечатляют инвесторов, убеждают клиентов и помогают закрывать сделки
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-gradient-to-r from-orange-500 to-purple-600 hover:from-orange-600 hover:to-purple-700 text-lg px-8 py-4">
-              <Icon name="Play" className="mr-2" />
-              Посмотреть портфолио
-            </Button>
-            <Button size="lg" variant="outline" className="border-2 border-orange-500 text-orange-500 hover:bg-orange-50 text-lg px-8 py-4">
-              Заказать консультацию
-            </Button>
+      <section className="pt-24 pb-16 px-4">
+        <div className="container mx-auto text-center">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+              Презентации, которые{' '}
+              <span className="bg-gradient-to-r from-brand-cyan to-brand-green bg-clip-text text-transparent">
+                продают
+              </span>
+            </h1>
+            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+              Создаем эффектные презентации для бизнеса, которые захватывают внимание 
+              и приводят к результату
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <Button size="lg" className="bg-brand-green hover:bg-brand-cyan text-white px-8 py-4 text-lg">
+                <Icon name="Play" className="mr-2" />
+                Смотреть портфолио
+              </Button>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-navy px-8 py-4 text-lg">
+                <Icon name="MessageCircle" className="mr-2" />
+                Обсудить проект
+              </Button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                <div className="text-3xl font-bold text-brand-cyan mb-2">500+</div>
+                <div className="text-white/80">Готовых презентаций</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                <div className="text-3xl font-bold text-brand-green mb-2">98%</div>
+                <div className="text-white/80">Довольных клиентов</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                <div className="text-3xl font-bold text-brand-cyan mb-2">24ч</div>
+                <div className="text-white/80">Средний срок</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">Наши услуги</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+      <section id="services" className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center text-brand-navy mb-4">Наши услуги</h2>
+          <p className="text-xl text-center text-gray-600 mb-12">
+            Полный спектр услуг по созданию презентаций для вашего бизнеса
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Card className="group hover:shadow-xl transition-all duration-300 border-l-4 border-l-brand-blue">
               <CardHeader>
-                <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-purple-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Icon name="BarChart3" size={32} className="text-white" />
+                <div className="w-12 h-12 bg-brand-blue/10 rounded-lg flex items-center justify-center mb-4">
+                  <Icon name="Presentation" className="text-brand-blue" size={24} />
                 </div>
-                <CardTitle className="text-xl">Бизнес-презентации</CardTitle>
+                <CardTitle className="text-brand-navy">Бизнес-презентации</CardTitle>
+                <CardDescription>
+                  Презентации для инвесторов, партнеров и клиентов
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">Презентации для инвесторов, партнеров и клиентов. Четкая структура, убедительные аргументы и профессиональный дизайн.</p>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li className="flex items-center"><Icon name="Check" className="mr-2 text-brand-green" size={16} />Питч-деки</li>
+                  <li className="flex items-center"><Icon name="Check" className="mr-2 text-brand-green" size={16} />Корпоративные презентации</li>
+                  <li className="flex items-center"><Icon name="Check" className="mr-2 text-brand-green" size={16} />Отчеты и аналитика</li>
+                </ul>
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <Card className="group hover:shadow-xl transition-all duration-300 border-l-4 border-l-brand-green">
               <CardHeader>
-                <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-purple-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Icon name="Monitor" size={32} className="text-white" />
+                <div className="w-12 h-12 bg-brand-green/10 rounded-lg flex items-center justify-center mb-4">
+                  <Icon name="Users" className="text-brand-green" size={24} />
                 </div>
-                <CardTitle className="text-xl">Продуктовые презентации</CardTitle>
+                <CardTitle className="text-brand-navy">Продающие презентации</CardTitle>
+                <CardDescription>
+                  Презентации, которые конвертируют аудиторию в клиентов
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">Демонстрация продуктов и услуг с акцентом на преимущества и выгоды для клиентов.</p>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li className="flex items-center"><Icon name="Check" className="mr-2 text-brand-green" size={16} />Коммерческие предложения</li>
+                  <li className="flex items-center"><Icon name="Check" className="mr-2 text-brand-green" size={16} />Презентации продуктов</li>
+                  <li className="flex items-center"><Icon name="Check" className="mr-2 text-brand-green" size={16} />Лендинги в PPT</li>
+                </ul>
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <Card className="group hover:shadow-xl transition-all duration-300 border-l-4 border-l-brand-purple">
               <CardHeader>
-                <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-purple-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Icon name="Users" size={32} className="text-white" />
+                <div className="w-12 h-12 bg-brand-purple/10 rounded-lg flex items-center justify-center mb-4">
+                  <Icon name="BookOpen" className="text-brand-purple" size={24} />
                 </div>
-                <CardTitle className="text-xl">Корпоративные презентации</CardTitle>
+                <CardTitle className="text-brand-navy">Образовательный контент</CardTitle>
+                <CardDescription>
+                  Презентации для обучения и тренингов
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">Отчеты, планы развития, презентации для сотрудников и акционеров. Соответствие корпоративному стилю.</p>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <CardHeader>
-                <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-purple-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Icon name="TrendingUp" size={32} className="text-white" />
-                </div>
-                <CardTitle className="text-xl">Startup Pitch Deck</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">Презентации для привлечения инвестиций. Правильная структура, убедительные данные и запоминающийся дизайн.</p>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <CardHeader>
-                <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-purple-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Icon name="Briefcase" size={32} className="text-white" />
-                </div>
-                <CardTitle className="text-xl">Консалтинг</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">Помогаем структурировать информацию, определить ключевые сообщения и выбрать оптимальный формат подачи.</p>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <CardHeader>
-                <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-purple-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Icon name="Palette" size={32} className="text-white" />
-                </div>
-                <CardTitle className="text-xl">Редизайн презентаций</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">Превращаем скучные презентации в яркие и запоминающиеся. Современный дизайн и улучшенная структура.</p>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li className="flex items-center"><Icon name="Check" className="mr-2 text-brand-green" size={16} />Обучающие курсы</li>
+                  <li className="flex items-center"><Icon name="Check" className="mr-2 text-brand-green" size={16} />Вебинары</li>
+                  <li className="flex items-center"><Icon name="Check" className="mr-2 text-brand-green" size={16} />Мастер-классы</li>
+                </ul>
               </CardContent>
             </Card>
           </div>
@@ -130,24 +142,96 @@ const Index = () => {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">Портфолио</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section id="portfolio" className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center text-brand-navy mb-4">Портфолио</h2>
+          <p className="text-xl text-center text-gray-600 mb-12">
+            Примеры наших работ для разных сфер бизнеса
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((item) => (
-              <Card key={item} className="group overflow-hidden hover:shadow-2xl transition-all duration-300">
-                <div className="aspect-video bg-gradient-to-br from-orange-200 to-purple-200 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-purple-600/20 group-hover:from-orange-500/30 group-hover:to-purple-600/30 transition-all duration-300"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Icon name="Presentation" size={48} className="text-white/80" />
-                  </div>
+              <div key={item} className="group cursor-pointer">
+                <div className="bg-gradient-to-br from-brand-navy to-brand-blue rounded-lg h-48 flex items-center justify-center mb-4 group-hover:shadow-xl transition-all duration-300">
+                  <Icon name="FilePresentation" className="text-white" size={48} />
                 </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-2">Проект {item}</h3>
-                  <p className="text-gray-600 mb-4">Описание презентации и достигнутых результатов для клиента.</p>
-                  <Badge variant="secondary" className="bg-gradient-to-r from-orange-500 to-purple-600 text-white">
-                    Бизнес-презентация
-                  </Badge>
+                <h3 className="text-lg font-semibold text-brand-navy mb-2">Проект {item}</h3>
+                <p className="text-gray-600 text-sm">Описание проекта и результатов</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Cases Section */}
+      <section id="cases" className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center text-brand-navy mb-4">Кейсы</h2>
+          <p className="text-xl text-center text-gray-600 mb-12">
+            Реальные результаты наших клиентов
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card className="border-l-4 border-l-brand-green">
+              <CardHeader>
+                <CardTitle className="text-brand-navy">IT-стартап привлек $2M</CardTitle>
+                <CardDescription>Питч-дек для инвесторов</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  Создали убедительную презентацию для стартапа, которая помогла привлечь 
+                  инвестиции на сумму $2 миллиона в seed-раунде.
+                </p>
+                <div className="flex items-center text-brand-green font-semibold">
+                  <Icon name="TrendingUp" className="mr-2" size={16} />
+                  Результат: $2M инвестиций
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-brand-blue">
+              <CardHeader>
+                <CardTitle className="text-brand-navy">Увеличение продаж на 150%</CardTitle>
+                <CardDescription>Коммерческое предложение</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  Разработали серию презентаций для отдела продаж, что привело к 
+                  значительному росту конверсии и объема продаж.
+                </p>
+                <div className="flex items-center text-brand-blue font-semibold">
+                  <Icon name="BarChart" className="mr-2" size={16} />
+                  Результат: +150% к продажам
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section id="reviews" className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center text-brand-navy mb-4">Отзывы</h2>
+          <p className="text-xl text-center text-gray-600 mb-12">
+            Что говорят наши клиенты
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { name: "Александр Петров", company: "CEO, TechStart", text: "Потрясающая работа! Презентация помогла нам закрыть важную сделку.", rating: 5 },
+              { name: "Мария Иванова", company: "Директор по маркетингу", text: "Профессиональный подход и отличный результат. Рекомендую!", rating: 5 },
+              { name: "Дмитрий Сидоров", company: "Основатель стартапа", text: "Благодаря презентации от AS design мы привлекли инвестиции!", rating: 5 }
+            ].map((review, index) => (
+              <Card key={index} className="bg-white">
+                <CardContent className="pt-6">
+                  <div className="flex items-center mb-4">
+                    {[...Array(review.rating)].map((_, i) => (
+                      <Icon key={i} name="Star" className="text-yellow-400 fill-current" size={16} />
+                    ))}
+                  </div>
+                  <p className="text-gray-600 mb-4">"{review.text}"</p>
+                  <div>
+                    <div className="font-semibold text-brand-navy">{review.name}</div>
+                    <div className="text-sm text-gray-500">{review.company}</div>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -155,171 +239,87 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Cases Section */}
-      <section id="cases" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">Кейсы</h2>
-          <div className="space-y-16">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <Badge className="bg-gradient-to-r from-orange-500 to-purple-600 text-white mb-4">
-                  Финтех стартап
-                </Badge>
-                <h3 className="text-3xl font-bold mb-4">Привлекли $2М инвестиций</h3>
-                <p className="text-gray-600 mb-6">
-                  Создали pitch deck для финтех стартапа, который помог привлечь первый раунд инвестиций. 
-                  Четкая структура, убедительная презентация продукта и финансовых показателей.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center"><Icon name="Check" className="text-green-500 mr-2" size={16} />20 слайдов презентации</li>
-                  <li className="flex items-center"><Icon name="Check" className="text-green-500 mr-2" size={16} />3 версии под разные аудитории</li>
-                  <li className="flex items-center"><Icon name="Check" className="text-green-500 mr-2" size={16} />Анимации и интерактивные элементы</li>
-                </ul>
-                <Button className="bg-gradient-to-r from-orange-500 to-purple-600">Подробнее</Button>
-              </div>
-              <div className="aspect-video bg-gradient-to-br from-orange-200 to-purple-200 rounded-lg relative overflow-hidden">
-                <img 
-                  src="/img/a00c23a1-5e65-42d5-b862-4f736e3385f1.jpg" 
-                  alt="Кейс финтех стартапа" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-purple-600/10"></div>
-              </div>
-            </div>
-
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="aspect-video bg-gradient-to-br from-purple-200 to-orange-200 rounded-lg relative overflow-hidden lg:order-1">
-                <img 
-                  src="/img/bdf61268-6fba-49b4-b661-fbe1d33cc1b9.jpg" 
-                  alt="Кейс e-commerce платформы" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-orange-500/10"></div>
-              </div>
-              <div className="lg:order-2">
-                <Badge className="bg-gradient-to-r from-purple-600 to-orange-500 text-white mb-4">
-                  E-commerce
-                </Badge>
-                <h3 className="text-3xl font-bold mb-4">Рост продаж на 150%</h3>
-                <p className="text-gray-600 mb-6">
-                  Разработали продуктовую презентацию для e-commerce платформы. Показали преимущества 
-                  перед конкурентами и план масштабирования бизнеса.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center"><Icon name="Check" className="text-green-500 mr-2" size={16} />Анализ конкурентов</li>
-                  <li className="flex items-center"><Icon name="Check" className="text-green-500 mr-2" size={16} />Визуализация данных</li>
-                  <li className="flex items-center"><Icon name="Check" className="text-green-500 mr-2" size={16} />Интерактивные диаграммы</li>
-                </ul>
-                <Button className="bg-gradient-to-r from-purple-600 to-orange-500">Подробнее</Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Reviews Section */}
-      <section id="reviews" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">Отзывы клиентов</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { name: "Алексей Петров", company: "CEO TechStart", text: "Презентация помогла нам привлечь инвестиции. Профессиональный подход и отличный результат!" },
-              { name: "Мария Иванова", company: "CMO RetailPro", text: "Команда создала презентацию, которая превзошла все ожидания. Рекомендую!" },
-              { name: "Дмитрий Сидоров", company: "Founder EduTech", text: "Благодаря качественной презентации мы закрыли крупную сделку с партнерами." }
-            ].map((review, index) => (
-              <Card key={index} className="p-6 hover:shadow-xl transition-shadow">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                    {review.name.charAt(0)}
-                  </div>
-                  <div className="ml-4">
-                    <h4 className="font-bold text-gray-900">{review.name}</h4>
-                    <p className="text-gray-600 text-sm">{review.company}</p>
-                  </div>
-                </div>
-                <p className="text-gray-700 italic">"{review.text}"</p>
-                <div className="flex text-yellow-400 mt-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Icon key={i} name="Star" size={16} className="fill-current" />
-                  ))}
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Contact Section */}
-      <section id="contacts" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">Контакты</h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-orange-500 to-purple-600 bg-clip-text text-transparent">
-                Свяжитесь с нами
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-center">
-                  <Icon name="Phone" className="text-orange-500 mr-3" />
-                  <span>+7 (999) 123-45-67</span>
+      <section id="contact" className="py-16 bg-gradient-to-br from-brand-navy to-brand-blue">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl font-bold text-center text-white mb-4">Начнем работу над вашим проектом</h2>
+            <p className="text-xl text-center text-white/90 mb-12">
+              Расскажите о своих задачах, и мы создадим презентацию, которая поразит аудиторию
+            </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div className="text-white">
+                <h3 className="text-2xl font-semibold mb-6">Контактная информация</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center">
+                    <Icon name="Mail" className="mr-4" size={20} />
+                    <span>hello@asdesign.ru</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Icon name="Phone" className="mr-4" size={20} />
+                    <span>+7 (999) 123-45-67</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Icon name="MapPin" className="mr-4" size={20} />
+                    <span>Москва, Россия</span>
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  <Icon name="Mail" className="text-orange-500 mr-3" />
-                  <span>hello@presentation-studio.ru</span>
-                </div>
-                <div className="flex items-center">
-                  <Icon name="MapPin" className="text-orange-500 mr-3" />
-                  <span>Москва, Красная площадь, 1</span>
+                <div className="mt-8">
+                  <h4 className="text-lg font-semibold mb-4">Следите за нами</h4>
+                  <div className="flex space-x-4">
+                    <Button size="sm" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-navy">
+                      <Icon name="Send" size={16} />
+                    </Button>
+                    <Button size="sm" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-navy">
+                      <Icon name="Linkedin" size={16} />
+                    </Button>
+                  </div>
                 </div>
               </div>
-              <div className="mt-8">
-                <h4 className="font-bold mb-4">Мы в социальных сетях</h4>
-                <div className="flex space-x-4">
-                  <Button size="sm" variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50">
-                    <Icon name="MessageCircle" size={16} />
+              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+                <CardHeader>
+                  <CardTitle className="text-white">Обсудить проект</CardTitle>
+                  <CardDescription className="text-white/80">
+                    Заполните форму, и мы свяжемся с вами в течение часа
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <Input placeholder="Ваше имя" className="bg-white/20 border-white/30 text-white placeholder:text-white/70" />
+                  <Input placeholder="Email" type="email" className="bg-white/20 border-white/30 text-white placeholder:text-white/70" />
+                  <Input placeholder="Телефон" className="bg-white/20 border-white/30 text-white placeholder:text-white/70" />
+                  <Textarea 
+                    placeholder="Расскажите о своем проекте" 
+                    rows={4}
+                    className="bg-white/20 border-white/30 text-white placeholder:text-white/70"
+                  />
+                  <Button className="w-full bg-brand-green hover:bg-brand-cyan text-white">
+                    <Icon name="Send" className="mr-2" size={16} />
+                    Отправить заявку
                   </Button>
-                  <Button size="sm" variant="outline" className="border-purple-600 text-purple-600 hover:bg-purple-50">
-                    <Icon name="Share2" size={16} />
-                  </Button>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </div>
-            <Card className="p-6">
-              <h3 className="text-xl font-bold mb-6">Получить консультацию</h3>
-              <form className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium mb-1">Имя</label>
-                  <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1">Email</label>
-                  <input type="email" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1">Сообщение</label>
-                  <textarea rows={4} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
-                </div>
-                <Button className="w-full bg-gradient-to-r from-orange-500 to-purple-600 hover:from-orange-600 hover:to-purple-700">
-                  Отправить заявку
-                </Button>
-              </form>
-            </Card>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="font-bold text-2xl bg-gradient-to-r from-orange-500 to-purple-600 bg-clip-text text-transparent mb-4">
-            PRESENTATION STUDIO
+      <footer className="bg-brand-navy text-white py-8">
+        <div className="container mx-auto px-4 text-center">
+          <div className="mb-4">
+            <img 
+              src="https://cdn.poehali.dev/files/e1d700a0-2e89-46c5-8bb7-76b8a21feb7e.png" 
+              alt="AS design" 
+              className="h-8 mx-auto mb-4 filter brightness-0 invert"
+            />
           </div>
-          <p className="text-gray-400 mb-8">Презентации, которые работают на ваш бизнес</p>
-          <p className="text-gray-500">© 2024 Presentation Studio. Все права защищены.</p>
+          <p className="text-white/70">
+            © 2024 AS design. Все права защищены. Создаем презентации, которые работают.
+          </p>
         </div>
       </footer>
     </div>
   );
-};
+}
 
 export default Index;
